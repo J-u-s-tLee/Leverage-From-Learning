@@ -19,9 +19,10 @@
     }
     function getPersonPhoto($id) {
         global $dbh;
-        $stmt = $dbh->prepare('SELECT photo FROM Person WHERE identifier=?');
-        $stmt->execute(array($id));
-        return $stmt->fetch();
+        $stmt = $dbh->prepare('SELECT photo FROM Person WHERE identifier= :identifier');
+        $stmt->bindParam(':identifier', $id);
+        $stmt->execute();
+        return $stmt->fetchColumn();
     }
     function UpdatePersonPhoto($id, $target_file) {
         global $dbh;

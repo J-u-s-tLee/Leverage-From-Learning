@@ -13,7 +13,7 @@ $check = getimagesize($_FILES['profile_picture']['tmp_name']);
 
 if ($check !== false) {
     $currentProfilePicture = getPersonPhoto($user_id);
-    if ($currentProfilePicture && $currentProfilePicture !== 'default.png') {
+    if ($currentProfilePicture) {
         $oldFilePath = "../Images/" . $currentProfilePicture;
         if (file_exists($oldFilePath)) {
             unlink($oldFilePath);
